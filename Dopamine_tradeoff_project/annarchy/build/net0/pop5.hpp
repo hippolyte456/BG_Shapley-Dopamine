@@ -12,7 +12,7 @@ extern std::vector<std::mt19937> rng;
 
 
 ///////////////////////////////////////////////////////////////
-// Main Structure for the population of id 5 (pop5)
+// Main Structure for the population of id 5 (FSI)
 ///////////////////////////////////////////////////////////////
 struct PopStruct5{
 
@@ -32,31 +32,58 @@ struct PopStruct5{
 
     // Neuron specific parameters and variables
 
+    // Local parameter tau
+    std::vector< double > tau;
+
+    // Local variable mp
+    std::vector< double > mp;
+
     // Local variable r
     std::vector< double > r;
 
+    // Local psp _sum_exc
+    std::vector< double > _sum_exc;
+
+    // Local psp _sum_inh
+    std::vector< double > _sum_inh;
+
     // Random numbers
 
+    // Local functions
+    double f_activateFSI (double x) {return Smax_FSI/(exp((theta_FSI - x)/sigmap) + 1.0) ;};
 
-    // Delayed variables
-    std::deque< std::vector< double > > _delayed_r;
 
 
-    // Custom local parameters of a TimedArray
-    std::vector< int > _schedule; // List of times where new inputs should be set
-    std::vector< std::vector< double > > _buffer; // buffer holding the data
-    int _period; // Period of cycling
-    long int _t; // Internal time
-    int _block; // Internal block when inputs are set not at each step
+
 
 
     // Access methods to the parameters and variables
 
     std::vector<double> get_local_attribute_all_double(std::string name) {
 
+        // Local parameter tau
+        if ( name.compare("tau") == 0 ) {
+            return tau;
+        }
+
+        // Local variable mp
+        if ( name.compare("mp") == 0 ) {
+            return mp;
+        }
+
         // Local variable r
         if ( name.compare("r") == 0 ) {
             return r;
+        }
+
+        // Local psp _sum_exc
+        if ( name.compare("_sum_exc") == 0 ) {
+            return _sum_exc;
+        }
+
+        // Local psp _sum_inh
+        if ( name.compare("_sum_inh") == 0 ) {
+            return _sum_inh;
         }
 
 
@@ -68,9 +95,29 @@ struct PopStruct5{
     double get_local_attribute_double(std::string name, int rk) {
         assert( (rk < size) );
 
+        // Local parameter tau
+        if ( name.compare("tau") == 0 ) {
+            return tau[rk];
+        }
+
+        // Local variable mp
+        if ( name.compare("mp") == 0 ) {
+            return mp[rk];
+        }
+
         // Local variable r
         if ( name.compare("r") == 0 ) {
             return r[rk];
+        }
+
+        // Local psp _sum_exc
+        if ( name.compare("_sum_exc") == 0 ) {
+            return _sum_exc[rk];
+        }
+
+        // Local psp _sum_inh
+        if ( name.compare("_sum_inh") == 0 ) {
+            return _sum_inh[rk];
         }
 
 
@@ -82,9 +129,33 @@ struct PopStruct5{
     void set_local_attribute_all_double(std::string name, std::vector<double> value) {
         assert( (value.size() == size) );
 
+        // Local parameter tau
+        if ( name.compare("tau") == 0 ) {
+            tau = value;
+            return;
+        }
+
+        // Local variable mp
+        if ( name.compare("mp") == 0 ) {
+            mp = value;
+            return;
+        }
+
         // Local variable r
         if ( name.compare("r") == 0 ) {
             r = value;
+            return;
+        }
+
+        // Local psp _sum_exc
+        if ( name.compare("_sum_exc") == 0 ) {
+            _sum_exc = value;
+            return;
+        }
+
+        // Local psp _sum_inh
+        if ( name.compare("_sum_inh") == 0 ) {
+            _sum_inh = value;
             return;
         }
 
@@ -96,9 +167,33 @@ struct PopStruct5{
     void set_local_attribute_double(std::string name, int rk, double value) {
         assert( (rk < size) );
 
+        // Local parameter tau
+        if ( name.compare("tau") == 0 ) {
+            tau[rk] = value;
+            return;
+        }
+
+        // Local variable mp
+        if ( name.compare("mp") == 0 ) {
+            mp[rk] = value;
+            return;
+        }
+
         // Local variable r
         if ( name.compare("r") == 0 ) {
             r[rk] = value;
+            return;
+        }
+
+        // Local psp _sum_exc
+        if ( name.compare("_sum_exc") == 0 ) {
+            _sum_exc[rk] = value;
+            return;
+        }
+
+        // Local psp _sum_inh
+        if ( name.compare("_sum_inh") == 0 ) {
+            _sum_inh[rk] = value;
             return;
         }
 
@@ -108,14 +203,6 @@ struct PopStruct5{
     }
 
 
-    // Custom local parameters of a TimedArray
-    void set_schedule(std::vector<int> schedule) { _schedule = schedule; }
-    std::vector<int> get_schedule() { return _schedule; }
-    void set_buffer(std::vector< std::vector< double > > buffer) { _buffer = buffer; r = _buffer[0]; }
-    std::vector< std::vector< double > > get_buffer() { return _buffer; }
-    void set_period(int period) { _period = period; }
-    int get_period() { return _period; }
-
 
     // Method called to initialize the data structures
     void init_population() {
@@ -124,19 +211,24 @@ struct PopStruct5{
     #endif
         _active = true;
 
+        // Local parameter tau
+        tau = std::vector<double>(size, 0.0);
+
+        // Local variable mp
+        mp = std::vector<double>(size, 0.0);
+
         // Local variable r
         r = std::vector<double>(size, 0.0);
 
+        // Local psp _sum_exc
+        _sum_exc = std::vector<double>(size, 0.0);
+
+        // Local psp _sum_inh
+        _sum_inh = std::vector<double>(size, 0.0);
 
 
-        // Delayed variables
-        _delayed_r = std::deque< std::vector< double > >(max_delay, std::vector< double >(size, 0.0));
 
 
-        // Initialize counters
-        _t = 0;
-        _block = 0;
-        _period = -1;
 
 
     }
@@ -145,16 +237,6 @@ struct PopStruct5{
     void reset() {
 
 
-        for ( int i = 0; i < _delayed_r.size(); i++ ) {
-            _delayed_r[i] = r;
-        }
-
-
-        _t = 0;
-        _block = 0;
-
-        r.clear();
-        r = std::vector<double>(size, 0.0);
 
     }
 
@@ -179,54 +261,38 @@ struct PopStruct5{
     // Method to enqueue output variables in case outgoing projections have non-zero delay
     void update_delay() {
 
-        if ( _active ) {
-
-        _delayed_r.push_front(r);
-        _delayed_r.pop_back();
-
-        }
     }
 
     // Method to dynamically change the size of the queue for delayed variables
     void update_max_delay(int value) {
-
-        if(value <= max_delay){ // nothing to do
-            return;
-        }
-        max_delay = value;
-
-    _delayed_r.resize(max_delay, std::vector< double >(size, 0.0));
 
     }
 
     // Main method to update neural variables
     void update() {
 
-        if(_active){
-            //std::cout << _t << " " << _block<< " " << _schedule[_block] << std::endl;
+        if( _active ) {
+        #ifdef _TRACE_SIMULATION_STEPS
+            std::cout << "    PopStruct5::update()" << std::endl;
+        #endif
 
-            // Check if it is time to set the input
-            if(_t == _schedule[_block]){
-                // Set the data
-                r = _buffer[_block];
-                // Move to the next block
-                _block++;
-                // If was the last block, go back to the first block
-                if (_block == _schedule.size()){
-                    _block = 0;
-                }
+            // Updating the local variables
+            #pragma omp simd
+            for(int i = 0; i < size; i++){
+
+                // tau * dmp/dt  + mp = sum(exc) - sum(inh)
+                double _mp = (_sum_exc[i] - _sum_inh[i] - mp[i])/tau[i];
+
+                // tau * dmp/dt  + mp = sum(exc) - sum(inh)
+                mp[i] += dt*_mp ;
+
+
+                // r = f_activateFSI(mp)
+                r[i] = f_activateFSI(mp[i]);
+
+
             }
-
-            // If the timedarray is periodic, check if we arrive at that point
-            if(_period > -1 && (_t == _period-1)){
-                // Reset the counters
-                _block=0;
-                _t = -1;
-            }
-
-            // Always increment the internal time
-            _t++;
-        }
+        } // active
 
     }
 
@@ -239,14 +305,11 @@ struct PopStruct5{
     // Memory management: track the memory consumption
     long int size_in_bytes() {
         long int size_in_bytes = 0;
-
-        // schedule
-        size_in_bytes += _schedule.capacity() * sizeof(int);
-
-        // buffer
-        size_in_bytes += _buffer.capacity() * sizeof(std::vector<double>);
-        for( auto it = _buffer.begin(); it != _buffer.end(); it++ )
-            size_in_bytes += it->capacity() * sizeof(double);
+        // Parameters
+        size_in_bytes += sizeof(double) * tau.capacity();	// tau
+        // Variables
+        size_in_bytes += sizeof(double) * mp.capacity();	// mp
+        size_in_bytes += sizeof(double) * r.capacity();	// r
 
         return size_in_bytes;
     }
@@ -257,6 +320,8 @@ struct PopStruct5{
     std::cout << "PopStruct5::clear() - this = " << this << std::endl;
 #endif
         // Variables
+        mp.clear();
+        mp.shrink_to_fit();
         r.clear();
         r.shrink_to_fit();
 

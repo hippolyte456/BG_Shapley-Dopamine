@@ -58,22 +58,6 @@ PopStruct7 pop7;
 PopStruct8 pop8;
 PopStruct9 pop9;
 PopStruct10 pop10;
-PopStruct11 pop11;
-PopStruct12 pop12;
-PopStruct13 pop13;
-PopStruct14 pop14;
-PopStruct15 pop15;
-PopStruct16 pop16;
-PopStruct17 pop17;
-PopStruct18 pop18;
-PopStruct19 pop19;
-PopStruct20 pop20;
-PopStruct21 pop21;
-PopStruct22 pop22;
-PopStruct23 pop23;
-PopStruct24 pop24;
-PopStruct25 pop25;
-PopStruct26 pop26;
 
 
 // Projections
@@ -119,62 +103,6 @@ ProjStruct38 proj38;
 ProjStruct39 proj39;
 ProjStruct40 proj40;
 ProjStruct41 proj41;
-ProjStruct42 proj42;
-ProjStruct43 proj43;
-ProjStruct44 proj44;
-ProjStruct45 proj45;
-ProjStruct46 proj46;
-ProjStruct47 proj47;
-ProjStruct48 proj48;
-ProjStruct49 proj49;
-ProjStruct50 proj50;
-ProjStruct51 proj51;
-ProjStruct52 proj52;
-ProjStruct53 proj53;
-ProjStruct54 proj54;
-ProjStruct55 proj55;
-ProjStruct56 proj56;
-ProjStruct57 proj57;
-ProjStruct58 proj58;
-ProjStruct59 proj59;
-ProjStruct60 proj60;
-ProjStruct61 proj61;
-ProjStruct62 proj62;
-ProjStruct63 proj63;
-ProjStruct64 proj64;
-ProjStruct65 proj65;
-ProjStruct66 proj66;
-ProjStruct67 proj67;
-ProjStruct68 proj68;
-ProjStruct69 proj69;
-ProjStruct70 proj70;
-ProjStruct71 proj71;
-ProjStruct72 proj72;
-ProjStruct73 proj73;
-ProjStruct74 proj74;
-ProjStruct75 proj75;
-ProjStruct76 proj76;
-ProjStruct77 proj77;
-ProjStruct78 proj78;
-ProjStruct79 proj79;
-ProjStruct80 proj80;
-ProjStruct81 proj81;
-ProjStruct82 proj82;
-ProjStruct83 proj83;
-ProjStruct84 proj84;
-ProjStruct85 proj85;
-ProjStruct86 proj86;
-ProjStruct87 proj87;
-ProjStruct88 proj88;
-ProjStruct89 proj89;
-ProjStruct90 proj90;
-ProjStruct91 proj91;
-ProjStruct92 proj92;
-ProjStruct93 proj93;
-ProjStruct94 proj94;
-ProjStruct95 proj95;
-ProjStruct96 proj96;
-ProjStruct97 proj97;
 
 
 // Global operations
@@ -270,22 +198,6 @@ void initialize(double _dt) {
     pop8.init_population();
     pop9.init_population();
     pop10.init_population();
-    pop11.init_population();
-    pop12.init_population();
-    pop13.init_population();
-    pop14.init_population();
-    pop15.init_population();
-    pop16.init_population();
-    pop17.init_population();
-    pop18.init_population();
-    pop19.init_population();
-    pop20.init_population();
-    pop21.init_population();
-    pop22.init_population();
-    pop23.init_population();
-    pop24.init_population();
-    pop25.init_population();
-    pop26.init_population();
 
 
     // Projections
@@ -332,62 +244,6 @@ void initialize(double _dt) {
     proj39.init_projection();
     proj40.init_projection();
     proj41.init_projection();
-    proj42.init_projection();
-    proj43.init_projection();
-    proj44.init_projection();
-    proj45.init_projection();
-    proj46.init_projection();
-    proj47.init_projection();
-    proj48.init_projection();
-    proj49.init_projection();
-    proj50.init_projection();
-    proj51.init_projection();
-    proj52.init_projection();
-    proj53.init_projection();
-    proj54.init_projection();
-    proj55.init_projection();
-    proj56.init_projection();
-    proj57.init_projection();
-    proj58.init_projection();
-    proj59.init_projection();
-    proj60.init_projection();
-    proj61.init_projection();
-    proj62.init_projection();
-    proj63.init_projection();
-    proj64.init_projection();
-    proj65.init_projection();
-    proj66.init_projection();
-    proj67.init_projection();
-    proj68.init_projection();
-    proj69.init_projection();
-    proj70.init_projection();
-    proj71.init_projection();
-    proj72.init_projection();
-    proj73.init_projection();
-    proj74.init_projection();
-    proj75.init_projection();
-    proj76.init_projection();
-    proj77.init_projection();
-    proj78.init_projection();
-    proj79.init_projection();
-    proj80.init_projection();
-    proj81.init_projection();
-    proj82.init_projection();
-    proj83.init_projection();
-    proj84.init_projection();
-    proj85.init_projection();
-    proj86.init_projection();
-    proj87.init_projection();
-    proj88.init_projection();
-    proj89.init_projection();
-    proj90.init_projection();
-    proj91.init_projection();
-    proj92.init_projection();
-    proj93.init_projection();
-    proj94.init_projection();
-    proj95.init_projection();
-    proj96.init_projection();
-    proj97.init_projection();
 
 
     // Custom constants
@@ -424,22 +280,6 @@ pop7.init_rng_dist();
 pop8.init_rng_dist();
 pop9.init_rng_dist();
 pop10.init_rng_dist();
-pop11.init_rng_dist();
-pop12.init_rng_dist();
-pop13.init_rng_dist();
-pop14.init_rng_dist();
-pop15.init_rng_dist();
-pop16.init_rng_dist();
-pop17.init_rng_dist();
-pop18.init_rng_dist();
-pop19.init_rng_dist();
-pop20.init_rng_dist();
-pop21.init_rng_dist();
-pop22.init_rng_dist();
-pop23.init_rng_dist();
-pop24.init_rng_dist();
-pop25.init_rng_dist();
-pop26.init_rng_dist();
 
 }
 
@@ -462,53 +302,53 @@ void singleStep()
     ////////////////////////////////
 
 
-    // pop21: FSI
-    if (pop21._active)
-        memset( pop21._sum_exc.data(), 0.0, pop21._sum_exc.size() * sizeof(double));
+    // pop5: FSI
+    if (pop5._active)
+        memset( pop5._sum_exc.data(), 0.0, pop5._sum_exc.size() * sizeof(double));
 
-    // pop21: FSI
-    if (pop21._active)
-        memset( pop21._sum_inh.data(), 0.0, pop21._sum_inh.size() * sizeof(double));
+    // pop5: FSI
+    if (pop5._active)
+        memset( pop5._sum_inh.data(), 0.0, pop5._sum_inh.size() * sizeof(double));
 
-    // pop22: MSNd1
-    if (pop22._active)
-        memset( pop22._sum_exc.data(), 0.0, pop22._sum_exc.size() * sizeof(double));
+    // pop6: MSNd1
+    if (pop6._active)
+        memset( pop6._sum_exc.data(), 0.0, pop6._sum_exc.size() * sizeof(double));
 
-    // pop22: MSNd1
-    if (pop22._active)
-        memset( pop22._sum_inh.data(), 0.0, pop22._sum_inh.size() * sizeof(double));
+    // pop6: MSNd1
+    if (pop6._active)
+        memset( pop6._sum_inh.data(), 0.0, pop6._sum_inh.size() * sizeof(double));
 
-    // pop23: MSNd2
-    if (pop23._active)
-        memset( pop23._sum_exc.data(), 0.0, pop23._sum_exc.size() * sizeof(double));
+    // pop7: MSNd2
+    if (pop7._active)
+        memset( pop7._sum_exc.data(), 0.0, pop7._sum_exc.size() * sizeof(double));
 
-    // pop23: MSNd2
-    if (pop23._active)
-        memset( pop23._sum_inh.data(), 0.0, pop23._sum_inh.size() * sizeof(double));
+    // pop7: MSNd2
+    if (pop7._active)
+        memset( pop7._sum_inh.data(), 0.0, pop7._sum_inh.size() * sizeof(double));
 
-    // pop24: GPe
-    if (pop24._active)
-        memset( pop24._sum_exc.data(), 0.0, pop24._sum_exc.size() * sizeof(double));
+    // pop8: GPe
+    if (pop8._active)
+        memset( pop8._sum_exc.data(), 0.0, pop8._sum_exc.size() * sizeof(double));
 
-    // pop24: GPe
-    if (pop24._active)
-        memset( pop24._sum_inh.data(), 0.0, pop24._sum_inh.size() * sizeof(double));
+    // pop8: GPe
+    if (pop8._active)
+        memset( pop8._sum_inh.data(), 0.0, pop8._sum_inh.size() * sizeof(double));
 
-    // pop25: GPiSNr
-    if (pop25._active)
-        memset( pop25._sum_exc.data(), 0.0, pop25._sum_exc.size() * sizeof(double));
+    // pop9: GPiSNr
+    if (pop9._active)
+        memset( pop9._sum_exc.data(), 0.0, pop9._sum_exc.size() * sizeof(double));
 
-    // pop25: GPiSNr
-    if (pop25._active)
-        memset( pop25._sum_inh.data(), 0.0, pop25._sum_inh.size() * sizeof(double));
+    // pop9: GPiSNr
+    if (pop9._active)
+        memset( pop9._sum_inh.data(), 0.0, pop9._sum_inh.size() * sizeof(double));
 
-    // pop26: STN
-    if (pop26._active)
-        memset( pop26._sum_exc.data(), 0.0, pop26._sum_exc.size() * sizeof(double));
+    // pop10: STN
+    if (pop10._active)
+        memset( pop10._sum_exc.data(), 0.0, pop10._sum_exc.size() * sizeof(double));
 
-    // pop26: STN
-    if (pop26._active)
-        memset( pop26._sum_inh.data(), 0.0, pop26._sum_inh.size() * sizeof(double));
+    // pop10: STN
+    if (pop10._active)
+        memset( pop10._sum_inh.data(), 0.0, pop10._sum_inh.size() * sizeof(double));
 
 #ifdef _TRACE_SIMULATION_STEPS
     std::cout << "Update psp/conductances ..." << std::endl;
@@ -555,62 +395,6 @@ void singleStep()
     proj39.compute_psp();
     proj40.compute_psp();
     proj41.compute_psp();
-    proj42.compute_psp();
-    proj43.compute_psp();
-    proj44.compute_psp();
-    proj45.compute_psp();
-    proj46.compute_psp();
-    proj47.compute_psp();
-    proj48.compute_psp();
-    proj49.compute_psp();
-    proj50.compute_psp();
-    proj51.compute_psp();
-    proj52.compute_psp();
-    proj53.compute_psp();
-    proj54.compute_psp();
-    proj55.compute_psp();
-    proj56.compute_psp();
-    proj57.compute_psp();
-    proj58.compute_psp();
-    proj59.compute_psp();
-    proj60.compute_psp();
-    proj61.compute_psp();
-    proj62.compute_psp();
-    proj63.compute_psp();
-    proj64.compute_psp();
-    proj65.compute_psp();
-    proj66.compute_psp();
-    proj67.compute_psp();
-    proj68.compute_psp();
-    proj69.compute_psp();
-    proj70.compute_psp();
-    proj71.compute_psp();
-    proj72.compute_psp();
-    proj73.compute_psp();
-    proj74.compute_psp();
-    proj75.compute_psp();
-    proj76.compute_psp();
-    proj77.compute_psp();
-    proj78.compute_psp();
-    proj79.compute_psp();
-    proj80.compute_psp();
-    proj81.compute_psp();
-    proj82.compute_psp();
-    proj83.compute_psp();
-    proj84.compute_psp();
-    proj85.compute_psp();
-    proj86.compute_psp();
-    proj87.compute_psp();
-    proj88.compute_psp();
-    proj89.compute_psp();
-    proj90.compute_psp();
-    proj91.compute_psp();
-    proj92.compute_psp();
-    proj93.compute_psp();
-    proj94.compute_psp();
-    proj95.compute_psp();
-    proj96.compute_psp();
-    proj97.compute_psp();
 
 
 
@@ -652,22 +436,6 @@ void singleStep()
     pop8.update(); pop8.spike_gather(); 
     pop9.update(); pop9.spike_gather(); 
     pop10.update(); pop10.spike_gather(); 
-    pop11.update(); pop11.spike_gather(); 
-    pop12.update(); pop12.spike_gather(); 
-    pop13.update(); pop13.spike_gather(); 
-    pop14.update(); pop14.spike_gather(); 
-    pop15.update(); pop15.spike_gather(); 
-    pop16.update(); pop16.spike_gather(); 
-    pop17.update(); pop17.spike_gather(); 
-    pop18.update(); pop18.spike_gather(); 
-    pop19.update(); pop19.spike_gather(); 
-    pop20.update(); pop20.spike_gather(); 
-    pop21.update(); pop21.spike_gather(); 
-    pop22.update(); pop22.spike_gather(); 
-    pop23.update(); pop23.spike_gather(); 
-    pop24.update(); pop24.spike_gather(); 
-    pop25.update(); pop25.spike_gather(); 
-    pop26.update(); pop26.spike_gather(); 
 
 
 
@@ -681,26 +449,10 @@ void singleStep()
     pop2.update_delay();
     pop3.update_delay();
     pop4.update_delay();
-    pop5.update_delay();
     pop6.update_delay();
     pop7.update_delay();
     pop8.update_delay();
-    pop9.update_delay();
     pop10.update_delay();
-    pop11.update_delay();
-    pop12.update_delay();
-    pop13.update_delay();
-    pop14.update_delay();
-    pop15.update_delay();
-    pop16.update_delay();
-    pop17.update_delay();
-    pop18.update_delay();
-    pop19.update_delay();
-    pop20.update_delay();
-    pop22.update_delay();
-    pop23.update_delay();
-    pop24.update_delay();
-    pop26.update_delay();
 
 
     ////////////////////////////////

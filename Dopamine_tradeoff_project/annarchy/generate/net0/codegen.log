@@ -4,28 +4,12 @@ pop1, TimedArray( name = pop1 )
 pop2, TimedArray( name = pop2 )
 pop3, TimedArray( name = pop3 )
 pop4, TimedArray( name = pop4 )
-pop5, TimedArray( name = pop5 )
-pop6, TimedArray( name = pop6 )
-pop7, TimedArray( name = pop7 )
-pop8, TimedArray( name = pop8 )
-pop9, TimedArray( name = pop9 )
-pop10, TimedArray( name = pop10 )
-pop11, TimedArray( name = pop11 )
-pop12, TimedArray( name = pop12 )
-pop13, TimedArray( name = pop13 )
-pop14, TimedArray( name = pop14 )
-pop15, TimedArray( name = pop15 )
-pop16, TimedArray( name = pop16 )
-pop17, TimedArray( name = pop17 )
-pop18, TimedArray( name = pop18 )
-pop19, TimedArray( name = pop19 )
-pop20, TimedArray( name = pop20 )
-pop21, Population( name = FSI )
-pop22, Population( name = MSNd1 )
-pop23, Population( name = MSNd2 )
-pop24, Population( name = GPe )
-pop25, Population( name = GPiSNr )
-pop26, Population( name = STN )
+pop5, Population( name = FSI )
+pop6, Population( name = MSNd1 )
+pop7, Population( name = MSNd2 )
+pop8, Population( name = GPe )
+pop9, Population( name = GPiSNr )
+pop10, Population( name = STN )
 proj0, Projection( pre = pop1, post = MSNd1, target = exc ) using connector: One-to-One 
 proj1, Projection( pre = pop1, post = MSNd2, target = exc ) using connector: One-to-One 
 proj2, Projection( pre = pop1, post = FSI, target = exc ) using connector: One-to-One 
@@ -40,87 +24,31 @@ proj10, Projection( pre = pop4, post = MSNd1, target = exc ) using connector: On
 proj11, Projection( pre = pop4, post = MSNd2, target = exc ) using connector: One-to-One 
 proj12, Projection( pre = pop4, post = FSI, target = exc ) using connector: One-to-One 
 proj13, Projection( pre = pop4, post = STN, target = exc ) using connector: One-to-One 
-proj14, Projection( pre = pop5, post = MSNd1, target = exc ) using connector: One-to-One 
-proj15, Projection( pre = pop5, post = MSNd2, target = exc ) using connector: One-to-One 
-proj16, Projection( pre = pop5, post = FSI, target = exc ) using connector: One-to-One 
-proj17, Projection( pre = pop6, post = MSNd1, target = exc ) using connector: One-to-One 
-proj18, Projection( pre = pop6, post = MSNd2, target = exc ) using connector: One-to-One 
-proj19, Projection( pre = pop6, post = FSI, target = exc ) using connector: One-to-One 
-proj20, Projection( pre = pop6, post = STN, target = exc ) using connector: One-to-One 
-proj21, Projection( pre = pop7, post = MSNd1, target = exc ) using connector: One-to-One 
-proj22, Projection( pre = pop7, post = MSNd2, target = exc ) using connector: One-to-One 
-proj23, Projection( pre = pop7, post = FSI, target = exc ) using connector: One-to-One 
-proj24, Projection( pre = pop8, post = MSNd1, target = exc ) using connector: One-to-One 
-proj25, Projection( pre = pop8, post = MSNd2, target = exc ) using connector: One-to-One 
-proj26, Projection( pre = pop8, post = FSI, target = exc ) using connector: One-to-One 
-proj27, Projection( pre = pop8, post = STN, target = exc ) using connector: One-to-One 
-proj28, Projection( pre = pop9, post = MSNd1, target = exc ) using connector: One-to-One 
-proj29, Projection( pre = pop9, post = MSNd2, target = exc ) using connector: One-to-One 
-proj30, Projection( pre = pop9, post = FSI, target = exc ) using connector: One-to-One 
-proj31, Projection( pre = pop10, post = MSNd1, target = exc ) using connector: One-to-One 
-proj32, Projection( pre = pop10, post = MSNd2, target = exc ) using connector: One-to-One 
-proj33, Projection( pre = pop10, post = FSI, target = exc ) using connector: One-to-One 
-proj34, Projection( pre = pop10, post = STN, target = exc ) using connector: One-to-One 
-proj35, Projection( pre = pop11, post = MSNd1, target = exc ) using connector: One-to-One 
-proj36, Projection( pre = pop11, post = MSNd2, target = exc ) using connector: One-to-One 
-proj37, Projection( pre = pop11, post = FSI, target = exc ) using connector: One-to-One 
-proj38, Projection( pre = pop12, post = MSNd1, target = exc ) using connector: One-to-One 
-proj39, Projection( pre = pop12, post = MSNd2, target = exc ) using connector: One-to-One 
-proj40, Projection( pre = pop12, post = FSI, target = exc ) using connector: One-to-One 
-proj41, Projection( pre = pop12, post = STN, target = exc ) using connector: One-to-One 
-proj42, Projection( pre = pop13, post = MSNd1, target = exc ) using connector: One-to-One 
-proj43, Projection( pre = pop13, post = MSNd2, target = exc ) using connector: One-to-One 
-proj44, Projection( pre = pop13, post = FSI, target = exc ) using connector: One-to-One 
-proj45, Projection( pre = pop14, post = MSNd1, target = exc ) using connector: One-to-One 
-proj46, Projection( pre = pop14, post = MSNd2, target = exc ) using connector: One-to-One 
-proj47, Projection( pre = pop14, post = FSI, target = exc ) using connector: One-to-One 
-proj48, Projection( pre = pop14, post = STN, target = exc ) using connector: One-to-One 
-proj49, Projection( pre = pop15, post = MSNd1, target = exc ) using connector: One-to-One 
-proj50, Projection( pre = pop15, post = MSNd2, target = exc ) using connector: One-to-One 
-proj51, Projection( pre = pop15, post = FSI, target = exc ) using connector: One-to-One 
-proj52, Projection( pre = pop16, post = MSNd1, target = exc ) using connector: One-to-One 
-proj53, Projection( pre = pop16, post = MSNd2, target = exc ) using connector: One-to-One 
-proj54, Projection( pre = pop16, post = FSI, target = exc ) using connector: One-to-One 
-proj55, Projection( pre = pop16, post = STN, target = exc ) using connector: One-to-One 
-proj56, Projection( pre = pop17, post = MSNd1, target = exc ) using connector: One-to-One 
-proj57, Projection( pre = pop17, post = MSNd2, target = exc ) using connector: One-to-One 
-proj58, Projection( pre = pop17, post = FSI, target = exc ) using connector: One-to-One 
-proj59, Projection( pre = pop18, post = MSNd1, target = exc ) using connector: One-to-One 
-proj60, Projection( pre = pop18, post = MSNd2, target = exc ) using connector: One-to-One 
-proj61, Projection( pre = pop18, post = FSI, target = exc ) using connector: One-to-One 
-proj62, Projection( pre = pop18, post = STN, target = exc ) using connector: One-to-One 
-proj63, Projection( pre = pop19, post = MSNd1, target = exc ) using connector: One-to-One 
-proj64, Projection( pre = pop19, post = MSNd2, target = exc ) using connector: One-to-One 
-proj65, Projection( pre = pop19, post = FSI, target = exc ) using connector: One-to-One 
-proj66, Projection( pre = pop20, post = MSNd1, target = exc ) using connector: One-to-One 
-proj67, Projection( pre = pop20, post = MSNd2, target = exc ) using connector: One-to-One 
-proj68, Projection( pre = pop20, post = FSI, target = exc ) using connector: One-to-One 
-proj69, Projection( pre = pop20, post = STN, target = exc ) using connector: One-to-One 
-proj70, Projection( pre = MSNd1, post = GPe, target = inh ) using connector: One-to-One 
-proj71, Projection( pre = MSNd2, post = GPe, target = inh ) using connector: One-to-One 
-proj72, Projection( pre = MSNd1, post = GPiSNr, target = inh ) using connector: One-to-One 
-proj73, Projection( pre = MSNd2, post = GPiSNr, target = inh ) using connector: One-to-One 
-proj74, Projection( pre = MSNd1, post = MSNd1, target = inh ) using connector: All-to-All 
-proj75, Projection( pre = MSNd1, post = MSNd2, target = inh ) using connector: All-to-All 
-proj76, Projection( pre = MSNd2, post = MSNd1, target = inh ) using connector: All-to-All 
-proj77, Projection( pre = MSNd2, post = MSNd2, target = inh ) using connector: All-to-All 
-proj78, Projection( pre = STN, post = GPe, target = exc ) using connector: All-to-All 
-proj79, Projection( pre = STN, post = GPiSNr, target = exc ) using connector: All-to-All 
-proj80, Projection( pre = STN, post = MSNd1, target = exc ) using connector: All-to-All 
-proj81, Projection( pre = STN, post = MSNd2, target = exc ) using connector: All-to-All 
-proj82, Projection( pre = STN, post = FSI, target = exc ) using connector: All-to-All 
-proj83, Projection( pre = GPe, post = STN, target = inh ) using connector: One-to-One 
-proj84, Projection( pre = GPe, post = GPiSNr, target = inh ) using connector: All-to-All 
-proj85, Projection( pre = GPe, post = MSNd1, target = inh ) using connector: All-to-All 
-proj86, Projection( pre = GPe, post = MSNd2, target = inh ) using connector: All-to-All 
-proj87, Projection( pre = GPe, post = FSI, target = inh ) using connector: All-to-All 
-proj88, Projection( pre = GPe, post = GPe, target = inh ) using connector: All-to-All 
-proj89, Projection( pre = FSI, post = MSNd1, target = inh ) using connector: All-to-All 
-proj90, Projection( pre = FSI, post = MSNd2, target = inh ) using connector: All-to-All 
-proj91, Projection( pre = FSI, post = FSI, target = inh ) using connector: All-to-All 
-proj92, Projection( pre = pop0, post = MSNd1, target = exc ) using connector: All-to-All 
-proj93, Projection( pre = pop0, post = MSNd2, target = exc ) using connector: All-to-All 
-proj94, Projection( pre = pop0, post = FSI, target = exc ) using connector: All-to-All 
-proj95, Projection( pre = pop0, post = STN, target = exc ) using connector: All-to-All 
-proj96, Projection( pre = pop0, post = GPe, target = exc ) using connector: All-to-All 
-proj97, Projection( pre = pop0, post = GPiSNr, target = exc ) using connector: All-to-All 
+proj14, Projection( pre = MSNd1, post = GPe, target = inh ) using connector: One-to-One 
+proj15, Projection( pre = MSNd2, post = GPe, target = inh ) using connector: One-to-One 
+proj16, Projection( pre = MSNd1, post = GPiSNr, target = inh ) using connector: One-to-One 
+proj17, Projection( pre = MSNd2, post = GPiSNr, target = inh ) using connector: One-to-One 
+proj18, Projection( pre = MSNd1, post = MSNd1, target = inh ) using connector: All-to-All 
+proj19, Projection( pre = MSNd1, post = MSNd2, target = inh ) using connector: All-to-All 
+proj20, Projection( pre = MSNd2, post = MSNd1, target = inh ) using connector: All-to-All 
+proj21, Projection( pre = MSNd2, post = MSNd2, target = inh ) using connector: All-to-All 
+proj22, Projection( pre = STN, post = GPe, target = exc ) using connector: All-to-All 
+proj23, Projection( pre = STN, post = GPiSNr, target = exc ) using connector: All-to-All 
+proj24, Projection( pre = STN, post = MSNd1, target = exc ) using connector: All-to-All 
+proj25, Projection( pre = STN, post = MSNd2, target = exc ) using connector: All-to-All 
+proj26, Projection( pre = STN, post = FSI, target = exc ) using connector: All-to-All 
+proj27, Projection( pre = GPe, post = STN, target = inh ) using connector: One-to-One 
+proj28, Projection( pre = GPe, post = GPiSNr, target = inh ) using connector: All-to-All 
+proj29, Projection( pre = GPe, post = MSNd1, target = inh ) using connector: All-to-All 
+proj30, Projection( pre = GPe, post = MSNd2, target = inh ) using connector: All-to-All 
+proj31, Projection( pre = GPe, post = FSI, target = inh ) using connector: All-to-All 
+proj32, Projection( pre = GPe, post = GPe, target = inh ) using connector: All-to-All 
+proj33, Projection( pre = FSI, post = MSNd1, target = inh ) using connector: All-to-All 
+proj34, Projection( pre = FSI, post = MSNd2, target = inh ) using connector: All-to-All 
+proj35, Projection( pre = FSI, post = FSI, target = inh ) using connector: All-to-All 
+proj36, Projection( pre = pop0, post = MSNd1, target = exc ) using connector: All-to-All 
+proj37, Projection( pre = pop0, post = MSNd2, target = exc ) using connector: All-to-All 
+proj38, Projection( pre = pop0, post = FSI, target = exc ) using connector: All-to-All 
+proj39, Projection( pre = pop0, post = STN, target = exc ) using connector: All-to-All 
+proj40, Projection( pre = pop0, post = GPe, target = exc ) using connector: All-to-All 
+proj41, Projection( pre = pop0, post = GPiSNr, target = exc ) using connector: All-to-All 

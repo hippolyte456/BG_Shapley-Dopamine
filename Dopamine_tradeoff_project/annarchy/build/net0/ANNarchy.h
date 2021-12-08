@@ -97,22 +97,6 @@ void set_theta_GPiSNr(double value);
 #include "pop8.hpp"
 #include "pop9.hpp"
 #include "pop10.hpp"
-#include "pop11.hpp"
-#include "pop12.hpp"
-#include "pop13.hpp"
-#include "pop14.hpp"
-#include "pop15.hpp"
-#include "pop16.hpp"
-#include "pop17.hpp"
-#include "pop18.hpp"
-#include "pop19.hpp"
-#include "pop20.hpp"
-#include "pop21.hpp"
-#include "pop22.hpp"
-#include "pop23.hpp"
-#include "pop24.hpp"
-#include "pop25.hpp"
-#include "pop26.hpp"
 
 /*
  * Structures for the projections
@@ -160,62 +144,6 @@ void set_theta_GPiSNr(double value);
 #include "proj39.hpp"
 #include "proj40.hpp"
 #include "proj41.hpp"
-#include "proj42.hpp"
-#include "proj43.hpp"
-#include "proj44.hpp"
-#include "proj45.hpp"
-#include "proj46.hpp"
-#include "proj47.hpp"
-#include "proj48.hpp"
-#include "proj49.hpp"
-#include "proj50.hpp"
-#include "proj51.hpp"
-#include "proj52.hpp"
-#include "proj53.hpp"
-#include "proj54.hpp"
-#include "proj55.hpp"
-#include "proj56.hpp"
-#include "proj57.hpp"
-#include "proj58.hpp"
-#include "proj59.hpp"
-#include "proj60.hpp"
-#include "proj61.hpp"
-#include "proj62.hpp"
-#include "proj63.hpp"
-#include "proj64.hpp"
-#include "proj65.hpp"
-#include "proj66.hpp"
-#include "proj67.hpp"
-#include "proj68.hpp"
-#include "proj69.hpp"
-#include "proj70.hpp"
-#include "proj71.hpp"
-#include "proj72.hpp"
-#include "proj73.hpp"
-#include "proj74.hpp"
-#include "proj75.hpp"
-#include "proj76.hpp"
-#include "proj77.hpp"
-#include "proj78.hpp"
-#include "proj79.hpp"
-#include "proj80.hpp"
-#include "proj81.hpp"
-#include "proj82.hpp"
-#include "proj83.hpp"
-#include "proj84.hpp"
-#include "proj85.hpp"
-#include "proj86.hpp"
-#include "proj87.hpp"
-#include "proj88.hpp"
-#include "proj89.hpp"
-#include "proj90.hpp"
-#include "proj91.hpp"
-#include "proj92.hpp"
-#include "proj93.hpp"
-#include "proj94.hpp"
-#include "proj95.hpp"
-#include "proj96.hpp"
-#include "proj97.hpp"
 
 
 
@@ -243,22 +171,6 @@ extern PopStruct7 pop7;
 extern PopStruct8 pop8;
 extern PopStruct9 pop9;
 extern PopStruct10 pop10;
-extern PopStruct11 pop11;
-extern PopStruct12 pop12;
-extern PopStruct13 pop13;
-extern PopStruct14 pop14;
-extern PopStruct15 pop15;
-extern PopStruct16 pop16;
-extern PopStruct17 pop17;
-extern PopStruct18 pop18;
-extern PopStruct19 pop19;
-extern PopStruct20 pop20;
-extern PopStruct21 pop21;
-extern PopStruct22 pop22;
-extern PopStruct23 pop23;
-extern PopStruct24 pop24;
-extern PopStruct25 pop25;
-extern PopStruct26 pop26;
 
 
 /*
@@ -307,62 +219,6 @@ extern ProjStruct38 proj38;
 extern ProjStruct39 proj39;
 extern ProjStruct40 proj40;
 extern ProjStruct41 proj41;
-extern ProjStruct42 proj42;
-extern ProjStruct43 proj43;
-extern ProjStruct44 proj44;
-extern ProjStruct45 proj45;
-extern ProjStruct46 proj46;
-extern ProjStruct47 proj47;
-extern ProjStruct48 proj48;
-extern ProjStruct49 proj49;
-extern ProjStruct50 proj50;
-extern ProjStruct51 proj51;
-extern ProjStruct52 proj52;
-extern ProjStruct53 proj53;
-extern ProjStruct54 proj54;
-extern ProjStruct55 proj55;
-extern ProjStruct56 proj56;
-extern ProjStruct57 proj57;
-extern ProjStruct58 proj58;
-extern ProjStruct59 proj59;
-extern ProjStruct60 proj60;
-extern ProjStruct61 proj61;
-extern ProjStruct62 proj62;
-extern ProjStruct63 proj63;
-extern ProjStruct64 proj64;
-extern ProjStruct65 proj65;
-extern ProjStruct66 proj66;
-extern ProjStruct67 proj67;
-extern ProjStruct68 proj68;
-extern ProjStruct69 proj69;
-extern ProjStruct70 proj70;
-extern ProjStruct71 proj71;
-extern ProjStruct72 proj72;
-extern ProjStruct73 proj73;
-extern ProjStruct74 proj74;
-extern ProjStruct75 proj75;
-extern ProjStruct76 proj76;
-extern ProjStruct77 proj77;
-extern ProjStruct78 proj78;
-extern ProjStruct79 proj79;
-extern ProjStruct80 proj80;
-extern ProjStruct81 proj81;
-extern ProjStruct82 proj82;
-extern ProjStruct83 proj83;
-extern ProjStruct84 proj84;
-extern ProjStruct85 proj85;
-extern ProjStruct86 proj86;
-extern ProjStruct87 proj87;
-extern ProjStruct88 proj88;
-extern ProjStruct89 proj89;
-extern ProjStruct90 proj90;
-extern ProjStruct91 proj91;
-extern ProjStruct92 proj92;
-extern ProjStruct93 proj93;
-extern ProjStruct94 proj94;
-extern ProjStruct95 proj95;
-extern ProjStruct96 proj96;
-extern ProjStruct97 proj97;
 
 
 /*

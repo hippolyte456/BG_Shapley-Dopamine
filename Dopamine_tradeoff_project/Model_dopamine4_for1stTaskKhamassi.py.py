@@ -34,10 +34,11 @@ import matplotlib as mpl
 import time as ti
 import os as os 
 from itertools import chain, combinations
+import random as rd 
 ############################################     CHOIX DE LA MODELISATION         ############################################
 
 os.getcwd()
-os.chdir('/home/hippo/Documents/FoldersBG_new/Dopamine_tradeoff_project')
+os.chdir('/home/hippo/Documents/FoldersBG/Dopamine_tradeoff_project')
 
 modelID = 9
 models_param = loadtxt(open("compact_weights.csv","rb"),delimiter=";",skiprows=1)
@@ -46,7 +47,7 @@ model = models_param[modelID]
 
 
 ##################### DEFINITION / RECUPERATION PARAMETRES NECESSAIRES ... A PASSER AUX CLASSES d'ANNarchy #################### 
-def creation_model(Tau_MSN = 30, Tau_FSI = 30, Tau_STN = 30, Tau_GPe = 30, Tau_GPiSNr = 30 , Dt = 1, time = 1000.0, NbChannels = 10, Lambda = 0, show_input = False, show_firing = True, show_proba = False, show_all = None):
+def creation_model(Tau_MSN = 30, Tau_FSI = 30, Tau_STN = 30, Tau_GPe = 30, Tau_GPiSNr = 30 , Dt = 1, time = 1000.0, NbChannels = 10, Lambda = 0, seed = 456, show_input = False, show_firing = True, show_proba = False, show_all = None, save = False, method_stim = 'random'):
     if show_all != None:
         show_input, show_firing, show_proba = show_all, show_all, show_all
 
@@ -77,7 +78,7 @@ def creation_model(Tau_MSN = 30, Tau_FSI = 30, Tau_STN = 30, Tau_GPe = 30, Tau_G
     theta_GPe = Constant('theta_GPe', model[27]*1e3)
     theta_GPiSNr = Constant('theta_GPiSNr', model[28]*1e3)
 
-#on divise par deux les projections partant de MSN puisque le nombre de neurones de la population simulée est maintenant divisée entre d1 et d2 
+    #on divise par deux les projections partant de MSN puisque le nombre de neurones de la population simulée est maintenant divisée entre d1 et d2 
     W_CSN_MSN = model[0]   
     W_CSN_FSI = model[1]
     W_PTN_MSN = model[22]   
@@ -188,35 +189,22 @@ def creation_model(Tau_MSN = 30, Tau_FSI = 30, Tau_STN = 30, Tau_GPe = 30, Tau_G
     
     # DEFINITION DES POPULATIONS 
 
-
     laps = 30
-    nb_stim = 1
     
-    # stimuli_CSN1 = [[2,time*5,0,laps],[5,time*4,time*5,laps],[10,time*3,time*9,laps],[15,time*2,time*12,laps],[20,time*1,time*14,laps]]
-    # stimuli_CSN2 = [[2,time*1,0,laps],[5,time*1,time,laps],[10,time*1,time*2,laps],[15,time*1,time*3,laps],[20,time*1,time*4,laps],    [5,time*1,time*5,laps],[10,time*1,time*6,laps],[15,time*1,time*7,laps],[20,time*1,time*8,laps],    [10,time*1,time*9,laps],[15,time*1,time*10,laps],[20,time*1,time*11,laps],    [15,time*1,time*12,20],[20,time*1,time*13,laps],    [20,time*1,time*14,laps]  ]
-    # stimuli_PTN1= [[15,time*5,0,laps],[23,time*4,time*5,laps],[30,time*3,time*9,laps],[38,time*2,time*12,laps],[45,time*1,time*14,laps]]
-    # stimuli_PTN2= [[15,time*1,0,laps],[23,time*1,time*1,laps],[30,time*1,time*2,laps],[38,time*1,time*3,laps],[45,time*1,time*4,laps],     [23,time*1,time*5,laps],[30,time*1,time*6,laps],[38,time*1,time*7,laps],[45,time*1,time*8,laps],    [30,time*1,time*9,laps],[38,time*1,time*10,laps],[45,time*1,time*11,laps],     [38,time*1,time*12,20],[45,time*1,time*13,laps],     [45,time*1,time*14,laps]]
-    # stimuli_CmPf = [[4,time*15,0,laps]]
-    stimuli_CSN = {}
-    stimuli_PTN = {}
+    stimuli_CSN = creation_stimuli(NbChannels, laps, time, num_seed = seed, method = method_stim, nucleus = 'CSN')
+    stimuli_PTN = creation_stimuli(NbChannels, laps, time, num_seed = seed, method = method_stim, nucleus = 'PTN')
     stimuli_CmPf = [[5,time,0,laps]]
-
-    for i in range(NbChannels):
-        stimCSN = [ [[2,time,0,laps]],[[5,time,0,laps]],[[10,time,0,laps]],[[15,time,0,laps]],[[18,time,0,laps]],[[15,time,0,laps]],[[12,time,0,laps]],[[10,time,0,laps]],[[7,time,0,laps]],[[4,time,0,laps]] ]
-        stimPTN = [ [[15,time,0,laps]],[[20,time,0,laps]],[[25,time,0,laps]],[[30,time,0,laps]],[[35,time,0,laps]],[[32,time,0,laps]],[[28,time,0,laps]],[[24,time,0,laps]],[[21,time,0,laps]],[[18,time,0,laps]] ]
-        stimuli_CSN[i] = stimCSN[i]
-        stimuli_PTN[i]= stimPTN[i]
-        
+   
     
 
     ### input ### 
     CSN = {}
     PTN = {}
-    CmPf = creation_TimedArray(nb_stim*time,NbChannels,stimuli,stimuli_CmPf)
+    CmPf = creation_TimedArray(time,NbChannels,stimuli,stimuli_CmPf)
 
     for i in range(NbChannels):
-        CSN[i] = creation_TimedArray(nb_stim*time,1,stimuli, stimuli_CSN[i])
-        PTN[i] = creation_TimedArray(nb_stim*time,1,stimuli, stimuli_PTN[i])
+        CSN[i] = creation_TimedArray(time,1,stimuli, stimuli_CSN[i])
+        PTN[i] = creation_TimedArray(time,1,stimuli, stimuli_PTN[i])
         
         
     
@@ -226,7 +214,7 @@ def creation_model(Tau_MSN = 30, Tau_FSI = 30, Tau_STN = 30, Tau_GPe = 30, Tau_G
     MSNd2 = Population(name='MSNd2', geometry=NbChannels, neuron=LeakyIntegratorNeuron_MSN)
     GPe = Population(name='GPe', geometry=NbChannels, neuron=LeakyIntegratorNeuron_GPe)
     GPiSNr = Population(name='GPiSNr', geometry=NbChannels, neuron=LeakyIntegratorNeuron_GPiSNr)
-    STN = Population(name='STN', geometry=NbChannels, neuron=LeakyIntegratorNeuron_STN)
+    STN = Population(name='STN', geometry=NbChannels, neuron=LeakyIntegratorNeuron_STN) # à diviser en 2 aussi ? 
     ### output / thalamus ###
     #...
     
@@ -309,7 +297,7 @@ def creation_model(Tau_MSN = 30, Tau_FSI = 30, Tau_STN = 30, Tau_GPe = 30, Tau_G
     proj_CmPf_GPiSNr = Projection(pre=CmPf, post=GPiSNr, target='exc', synapse=Basic).connect_all_to_all(weights = W_CmPf_GPiSNr , delays = latency['dCmPf_GPiSNr'])
 
 
-    # ##########################################################################################################################
+##########################################################################################################################
 
   
     compile()
@@ -337,7 +325,7 @@ def creation_model(Tau_MSN = 30, Tau_FSI = 30, Tau_STN = 30, Tau_GPe = 30, Tau_G
 
 
             #todo : mettre les différents inputs possibles dans des fonctions  
-    all_time = time * nb_stim
+    all_time = time 
     simulate(all_time)
 
 
@@ -352,24 +340,12 @@ def creation_model(Tau_MSN = 30, Tau_FSI = 30, Tau_STN = 30, Tau_GPe = 30, Tau_G
     ##### AFFICHAGE #####
 
 
-    if show_input : 
-        rCSN, rPTN = {}, {}
-        for i in range(NbChannels):
-            rCSN[i] = mCSN[i].get('r')
-            rPTN[i] = mPTN[i].get('r')
-            
-        rCmPf = mCmPf.get('r')
-        f,axs = plt.subplots(nrows=3 , ncols= NbChannels , sharey='row')
-        for i in range(NbChannels):  
-            axs[0,i].plot(dt()*np.arange(all_time*(1/Dt)), rCSN[i])
-            axs[1,i].plot(dt()*np.arange(all_time*(1/Dt)), rPTN[i]) 
-            axs[2,i].plot(dt()*np.arange(all_time*(1/Dt)), rCmPf)     
-        plt.show()
- 
+    if show_input :
+        view_input(NbChannels,all_time,Dt,mCSN,mPTN,mCmPf, save = save, Lambda=Lambda)       
     if show_firing:
-        view_all_firing_rate(NbChannels, MSNd1monitors, MSNd2monitors, STNmonitors,FSImonitors,GPemonitors,rGPis, all_time, Dt = Dt, Tau_MSN = Tau_MSN, Tau_FSI = Tau_FSI, Tau_STN = Tau_STN, Tau_GPe = Tau_GPe, Tau_GPiSNr = Tau_GPiSNr )
+        view_all_firing_rate(NbChannels, MSNd1monitors, MSNd2monitors, STNmonitors,FSImonitors,GPemonitors,rGPis, all_time, Dt = Dt, save = save, Lambda=Lambda )
     if show_proba:
-        view_proba(probas,H)
+        view_proba(probas,H, save = save, Lambda=Lambda)
     
     ##### return #####
 
@@ -391,6 +367,29 @@ def get_firingrates(GPiSNrmonitors):
 
 
 ##################################  Fonctions pour creer les inputs  #####################################
+def creation_stimuli(NbChannels,laps,time,num_seed = 456, method = 'manual', nucleus = 'CSN',):
+    stimuli = {}
+
+    if method == 'manual':
+        if nucleus == 'CSN':
+            stim = [ [[2,time,0,laps]],[[5,time,0,laps]],[[10,time,0,laps]],[[15,time,0,laps]],[[18,time,0,laps]],[[15,time,0,laps]],[[12,time,0,laps]],[[10,time,0,laps]],[[7,time,0,laps]],[[4,time,0,laps]] ]
+        if nucleus == 'PTN':
+            stim = [ [[15,time,0,laps]],[[20,time,0,laps]],[[25,time,0,laps]],[[30,time,0,laps]],[[35,time,0,laps]],[[32,time,0,laps]],[[28,time,0,laps]],[[24,time,0,laps]],[[21,time,0,laps]],[[18,time,0,laps]] ]    
+    
+    if method == 'random':
+        rd.seed(num_seed)
+        if nucleus == 'CSN':
+            stim = [ [[2+18*rd.random(),time,0,laps]]  for i in range(NbChannels) ]
+        if nucleus == 'PTN':
+            stim = [ [[15+31*rd.random(),time,0,laps]]  for i in range(NbChannels) ]
+
+    for i in range(NbChannels):
+        stimuli[i] = stim[i]
+    
+    return stimuli
+
+
+
 def creation_TimedArray(time,NbCanaux,funct,stimuli):  #*args
     time = int(time)
     inputs = np.zeros((int(time),NbCanaux))
@@ -431,10 +430,9 @@ def calcul_proba(firing_rates):
         activity = mean(r[400:800])  #vérifier que l'on prend bien le mean une fois stabilisé !!
         activities.append(activity)
 
-    rest = max(activities)
-
+    #rest = max(activities)
     for activity in activities:
-        norm_activity = activity / rest
+        norm_activity = activity / 400
         normalized_activities.append(norm_activity)
     
     Sum = 0
@@ -459,11 +457,26 @@ def calcul_entropy(probas):
 ####################################### VISUALISATIONS DU MODELE ##########################################################
 
 #la fonction renvoie aussi la sortie du modèle qui sert pour les calculs d'efficacité et de distorsion
-def view_all_firing_rate( NbChannels, MSNd1monitors, MSNd2monitors, STNmonitors,FSImonitors,GPemonitors,rGPis, all_time, projection_test = False, Shapley_test = False, Dt = 1, test_variation_tau = False, Tau_MSN = 5, Tau_FSI = 5, Tau_STN = 5, Tau_GPe = 5, Tau_GPiSNr = 5):
+def view_input(NbChannels,all_time,Dt,mCSN,mPTN,mCmPf, save = False, Lambda = 0):
+    rCSN, rPTN = {}, {}
+    for i in range(NbChannels):
+        rCSN[i] = mCSN[i].get('r')
+        rPTN[i] = mPTN[i].get('r')
+        
+    rCmPf = mCmPf.get('r')
+    f,axs = plt.subplots(nrows=3 , ncols= NbChannels , sharey='row')
+    for i in range(NbChannels):  
+        axs[0,i].plot(dt()*np.arange(all_time*(1/Dt)), rCSN[i])
+        axs[1,i].plot(dt()*np.arange(all_time*(1/Dt)), rPTN[i]) 
+        axs[2,i].plot(dt()*np.arange(all_time*(1/Dt)), rCmPf)
+    if save: 
+        plt.savefig(f'log/test_Khamassi/var_lambda/input_lambda={Lambda}.png', dpi=300, bbox_inches='tight') 
+    else:
+        plt.show()
+ 
+def view_all_firing_rate( NbChannels, MSNd1monitors, MSNd2monitors, STNmonitors,FSImonitors,GPemonitors,rGPis, all_time, Dt = 1, save = False, Lambda = 0):
+    
     fig,axs = plt.subplots(nrows=6 , ncols= NbChannels , sharey='row')
-    
-    #fig.Figure.set_figsize([10,10])
-    
     for idx,monitor in enumerate(MSNd1monitors):
         r = MSNd1monitors[monitor].get('r')
         axs[0,idx].plot(dt()*np.arange(all_time*(1/Dt)), r) 
@@ -490,13 +503,15 @@ def view_all_firing_rate( NbChannels, MSNd1monitors, MSNd2monitors, STNmonitors,
         axs[5,idx].plot(dt()*np.arange(all_time*(1/Dt)), r)
     axs[5,0].axes.set_ylabel("GPiSNr",size = 12)
     
-    #plt.savefig('log/test_variation_tau/tau' + str(Tau_MSN) +','+ str(Tau_FSI) +','+ str(Tau_GPe) +','+ str(Tau_STN) +','+ str(Tau_GPiSNr) + '.pdf', dpi=300, bbox_inches='tight')
-    #plt.savefig('log/comprendre_oscillations/test_tau/tauSTN=' + str(Tau_STN) + '.png', dpi=300, bbox_inches='tight')
-    #plt.savefig('log/var_dop_lvl_highCmPf/lambda=2.png', dpi=300, bbox_inches='tight')
-    plt.show()
-    #plt.close('all')
+    if save:
+        #plt.savefig('log/test_variation_tau/tau' + str(Tau_MSN) +','+ str(Tau_FSI) +','+ str(Tau_GPe) +','+ str(Tau_STN) +','+ str(Tau_GPiSNr) + '.pdf', dpi=300, bbox_inches='tight')
+        #plt.savefig('log/comprendre_oscillations/test_tau/tauSTN=' + str(Tau_STN) + '.png', dpi=300, bbox_inches='tight')
+        plt.savefig(f'log/test_Khamassi/var_lambda/firingrate_lambda={Lambda}.png', dpi=300, bbox_inches='tight')
+    else:
+        plt.show()
+        #plt.close('all')
 
-def view_proba(probas,entropy):
+def view_proba(probas,entropy, save = False, Lambda = 0):
     fig,ax = plt.subplots()
     x = [ i for i in range(len(probas)) ]
     ax.bar(x,height = probas)
@@ -505,8 +520,10 @@ def view_proba(probas,entropy):
     props = dict(boxstyle='round', facecolor='wheat', alpha=0.5)
     ax.text(0.05, 0.95, textstr, transform= ax.transAxes, fontsize=14,
         verticalalignment='top', bbox=props)
-    #plt.savefig('log/var_dop_lvl_highCmPf/lambda=2.png', dpi=300, bbox_inches='tight')
-    plt.show()
+    if save:
+        plt.savefig(f'log/test_Khamassi/var_lambda/probas_lambda={Lambda}.png', dpi=300, bbox_inches='tight')
+    else:
+        plt.show()
 
 
 
@@ -514,30 +531,46 @@ def view_proba(probas,entropy):
 
 
 ####################################### LES DIFFÉRENTS TESTS À LANCER #################################################
-def Khamassi_var_entropy():
+def Khamassi_var_entropy(nb_points = 11,lambda_max = 1, nb_inputs = 10, first_seed = 456):
     list_lambda = []
     list_H = []
-    for i in range(21):
-        Lambda = i/10
-        H = creation_model(Lambda = Lambda, show_all=False) #autre boucle for pour faire avec les 100 inputs différent
-        list_lambda.append(Lambda)
-        list_H.append(H)
-    plt.plot(list_lambda, list_H)
-    plt.savefig('log/test_Khamassi/var_entropy/entropy=f(lambda).png', dpi=300, bbox_inches='tight')
-    ##ajouter une ligne pour sauver données aussi, en plus de la figure 
-    plt.show()
-    
+    list_varH = []
+    for i in range(nb_points+1):      # nombre de points sur la courbe H = f(lambda)
+        Lambda = i/(nb_points)*lambda_max
+        lH = []
+        num_seed = first_seed       # pour chaque nouveau lambda on réintialise la seed pour avoir la même séquence d'input 
+        for i in range(nb_inputs):  # nombre d'inputs différents pour créer chaque point de la courbe 
+            H = creation_model(Lambda = Lambda, show_all = False, seed = num_seed) 
+            num_seed += 1           # on fait varier la seed à chaque modèle
+            lH.append(H)
 
+        list_lambda.append(Lambda)
+        meanH = mean(lH)
+        varH = var(lH)
+        list_H.append(meanH)
+        list_varH.append(varH)
+
+    plt.plot(list_lambda, list_H)
+    for err in range(len(list_lambda)):
+        plt.errorbar(list_lambda[err], list_H[err], yerr = 2*sqrt( list_varH[err]/nb_points) )
+    #plt.savefig('log/test_Khamassi/var_entropy/10X456entropy=f(lambda).png', dpi=300, bbox_inches='tight')
+    plt.show()
+    ##ajouter une ligne pour sauver données aussi, en plus de la figure 
+    
+    
+def Khamassi_var_proba():
+    for i in [0,0.5,1]:
+        creation_model(Lambda=i, show_all = True, method_stim = 'manual', save = True)
 
 
 ##########################################################################################################################
 
 
 if __name__ == '__main__':
-    # Linputs = []
-    # for input in Linputs:
-    #     creation_model(views = False)
+    a = time.time()
+    creation_model(Lambda = 0, show_firing=False,show_proba=True)
+    #Khamassi_var_proba()
+    #Khamassi_var_entropy(nb_points = 2, lambda_max = 1, nb_inputs = 2, first_seed = 456)
+    b = time.time()
+    print(b-a)
 
-    #creation_model(Lambda = 2, show_firing=False,show_proba=True)
-
-    Khamassi_var_entropy()

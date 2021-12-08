@@ -6,12 +6,12 @@
 #include "sparse_matrix.hpp"
 
 #include "pop3.hpp"
-#include "pop23.hpp"
+#include "pop7.hpp"
 
 
 
 extern PopStruct3 pop3;
-extern PopStruct23 pop23;
+extern PopStruct7 pop7;
 
 extern std::vector<std::mt19937> rng;
 
@@ -19,7 +19,7 @@ extern std::vector<std::mt19937> rng;
 // proj8: pop3 -> MSNd2 with target exc
 /////////////////////////////////////////////////////////////////////////////
 struct ProjStruct8 : LILMatrix<int, int> {
-    ProjStruct8() : LILMatrix<int, int>( 10, 1) {
+    ProjStruct8() : LILMatrix<int, int>( 2, 1) {
     }
 
 
@@ -102,7 +102,7 @@ struct ProjStruct8 : LILMatrix<int, int> {
     #endif
         double sum;
 
-        if (_transmission && pop23._active){
+        if (_transmission && pop7._active){
 
             std::vector<double> _pre_r = pop3._delayed_r[delay-1];
 
@@ -112,7 +112,7 @@ struct ProjStruct8 : LILMatrix<int, int> {
                 for (int j = 0; j < pre_rank[i].size(); j++) {
                     sum +=  _pre_r[pre_rank[i][j]]*w ;
                 }
-                pop23._sum_exc[post_rank[i]] += sum;
+                pop7._sum_exc[post_rank[i]] += sum;
             }
 
         } // active

@@ -6,20 +6,20 @@
 #include "sparse_matrix.hpp"
 
 #include "pop7.hpp"
-#include "pop22.hpp"
+#include "pop7.hpp"
 
 
 
 extern PopStruct7 pop7;
-extern PopStruct22 pop22;
+extern PopStruct7 pop7;
 
 extern std::vector<std::mt19937> rng;
 
 /////////////////////////////////////////////////////////////////////////////
-// proj21: pop7 -> MSNd1 with target exc
+// proj21: MSNd2 -> MSNd2 with target inh
 /////////////////////////////////////////////////////////////////////////////
 struct ProjStruct21 : LILMatrix<int, int> {
-    ProjStruct21() : LILMatrix<int, int>( 10, 1) {
+    ProjStruct21() : LILMatrix<int, int>( 2, 2) {
     }
 
 
@@ -30,8 +30,6 @@ struct ProjStruct21 : LILMatrix<int, int> {
         static_cast<LILMatrix<int, int>*>(this)->init_matrix_from_lil(row_indices, column_indices);
 
         w = values[0][0];
-
-    delay = delays[0][0];
 
 
     #ifdef _DEBUG_CONN
@@ -49,8 +47,6 @@ struct ProjStruct21 : LILMatrix<int, int> {
     long int _update_offset;
 
 
-    // Uniform delay
-    int delay ;
 
 
 
@@ -102,17 +98,17 @@ struct ProjStruct21 : LILMatrix<int, int> {
     #endif
         double sum;
 
-        if (_transmission && pop22._active){
+        if (_transmission && pop7._active){
 
-            std::vector<double> _pre_r = pop7._delayed_r[delay-1];
+
 
             for (int i = 0; i < post_rank.size(); i++) {
 
                 sum = 0.0;
                 for (int j = 0; j < pre_rank[i].size(); j++) {
-                    sum +=  _pre_r[pre_rank[i][j]]*w ;
+                    sum +=  pop7.r[pre_rank[i][j]]*w ;
                 }
-                pop22._sum_exc[post_rank[i]] += sum;
+                pop7._sum_inh[post_rank[i]] += sum;
             }
 
         } // active

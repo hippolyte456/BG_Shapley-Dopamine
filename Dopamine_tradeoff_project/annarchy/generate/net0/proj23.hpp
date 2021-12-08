@@ -5,21 +5,21 @@
 
 #include "sparse_matrix.hpp"
 
-#include "pop7.hpp"
-#include "pop21.hpp"
+#include "pop10.hpp"
+#include "pop9.hpp"
 
 
 
-extern PopStruct7 pop7;
-extern PopStruct21 pop21;
+extern PopStruct10 pop10;
+extern PopStruct9 pop9;
 
 extern std::vector<std::mt19937> rng;
 
 /////////////////////////////////////////////////////////////////////////////
-// proj23: pop7 -> FSI with target exc
+// proj23: STN -> GPiSNr with target exc
 /////////////////////////////////////////////////////////////////////////////
 struct ProjStruct23 : LILMatrix<int, int> {
-    ProjStruct23() : LILMatrix<int, int>( 10, 1) {
+    ProjStruct23() : LILMatrix<int, int>( 2, 2) {
     }
 
 
@@ -102,9 +102,9 @@ struct ProjStruct23 : LILMatrix<int, int> {
     #endif
         double sum;
 
-        if (_transmission && pop21._active){
+        if (_transmission && pop9._active){
 
-            std::vector<double> _pre_r = pop7._delayed_r[delay-1];
+            std::vector<double> _pre_r = pop10._delayed_r[delay-1];
 
             for (int i = 0; i < post_rank.size(); i++) {
 
@@ -112,7 +112,7 @@ struct ProjStruct23 : LILMatrix<int, int> {
                 for (int j = 0; j < pre_rank[i].size(); j++) {
                     sum +=  _pre_r[pre_rank[i][j]]*w ;
                 }
-                pop21._sum_exc[post_rank[i]] += sum;
+                pop9._sum_exc[post_rank[i]] += sum;
             }
 
         } // active
